@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario</title>
+    <script>
+        // Función para manejar el envío del formulario
+        function mostrarDatos(event) {
+            event.preventDefault(); // Evita que el formulario se envíe y la página se recargue
+
+            // Obtener los valores del formulario
+            var nombre = document.getElementById("nombre").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var edad = document.getElementById("edad").value;
+            var pais = document.getElementById("pais").value;
+            var fechaNacimiento = document.getElementById("fecha_nacimiento").value;
+            var colorFavorito = document.getElementById("color_favorito").value;
+            var genero = document.querySelector('input[name="genero"]:checked').value;
+            var terminos = document.getElementById("terminos").checked;
+
+            // Mostrar los datos en pantalla
+            var resultado = `
+                <h3>Datos Ingresados:</h3>
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>Correo electrónico:</strong> ${email}</p>
+                <p><strong>Contraseña:</strong> ${password}</p>
+                <p><strong>Edad:</strong> ${edad}</p>
+                <p><strong>País:</strong> ${pais}</p>
+                <p><strong>Fecha de Nacimiento:</strong> ${fechaNacimiento}</p>
+                <p><strong>Color Favorito:</strong> <span style="background-color: ${colorFavorito}; padding: 5px; color: white;">${colorFavorito}</span></p>
+                <p><strong>Género:</strong> ${genero}</p>
+                <p><strong>Términos aceptados:</strong> ${terminos ? "Sí" : "No"}</p>
+            `;
+
+            // Insertar los datos en el div de resultado
+            document.getElementById("resultado").innerHTML = resultado;
+        }
+    </script>
+</head>
+<body>
+<h2>Formulario</h2>
+<form id="formulario" onsubmit="mostrarDatos(event)">
+
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required minlength="3" maxlength="50" autcomplete="on" placeholder="Escribe tu nombre"><br><br>
+
+    <label for="email">Correo electrónico:</label>
+    <input type="text" id="email" required minlength="6" maxlength="20" atocomplete="on" placeholder="email@ejemplo.com"><br><br>
+
+    <label for="edad">Contraseña:</label>
+    <input type="text" id="password" required minlength="6" maxlength="20" autocomplete="off" placeholder="Contraseña de 6 a 20 caracteres"><br><br>
+
+    <label for="text" id="edad">Edad:</label>
+    <input type="number" id="edad" required min="1" max="120" autocomplete="off" placeholder="Introduzca la edad"><br><br>
+
+    <label for="pais">País:</label>
+    <select name="pais" id="pais" required>
+    <option>Seleccionan tu país</option>
+        <option value="españa">españa</option>
+        <option value="francia">francia</option>
+        <option value="lituania">lituania</option>
+    </select><br><br>
+
+    <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+    <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required><br><br>
+    <label for="color">Color favorito:</label>
+    <input type="color" id="color_favorito"><br><br>
+
+    <label for="genero">Género:</label>
+    <label for="masculino">Masculino</label>
+    <input type="radio" id="masculino" name="genero" value="masculino">
+    <label for="femenino">Femenino</label>
+    <input type="radio" id="femenino" name="genero" value="femenino">  
+    <label for="prefiero no contestar">Prefiero no Contestar</label>
+    <input type="radio" id="prefiero n contestar" name="genero" value="prefiero no contestar"><br><br>
+    <label for="terminos">Acepto los términos y condiciones:</label>
+    <input type="checkbox" id="terminos"><br><br>
+    
+    <input type="submit" value="Registrarse">
+</form> 
+    <div id="resultado"></div>
+</body>
+</html>
