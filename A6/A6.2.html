@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valoración</title>
+<script>
+        function mostrarDatos(event) {
+            event.preventDefault(); 
+            const form = document.getElementById('formulario');
+            const nombre = form.nombre.value;
+            const personaje_favorito = form.personaje_favorito.value;
+            const valoracion = form.valoracion.value;
+            const observaciones = form.observaciones.value;
+
+            const resultadoDiv = document.getElementById('resultado');
+            resultadoDiv.innerHTML = `
+                <h3>Datos del Pedido:</h3>
+                <p><strong>Nombre:</strong> ${nombre}</p>
+                <p><strong>Personaje_favorito:</strong> ${personaje_favorito}</p>
+                <p><strong>Valoracion:</strong> ${valoracion}</p>
+                <p><strong>Observaciones:</strong> ${observaciones}</p>
+            `;
+        }
+</script>
+<body>
+    <h1>Valoracion</h1>
+ <form id="formulario" onsubmit="mostrarDatos(event)">
+    <label for="nombre">Nombre:</label>
+    <input type="text" id="nombre" required minlength="3" maxlength="50" autcomplete="on"><br><br>
+
+    <label for="personaje_favorito">Personaje favorito:</label>
+    <input type="text" list="personaje_favorito" id="personajefavorito" name="personaje_favorito" />
+    <datalist id="personaje_favorito">
+        <option value="Deku"></option>
+        <option value="Bakugo"></option>
+        <option value="Todoroki"></option>
+        <option value="All migh"></option>
+        <option value="Tenya Lida"></option>
+        <option value="Ochako Uraraka"></option>
+        <option value="Aizawa Shōta"></option>
+        <option value="Enji Todoroki"></option>
+    </datalist>
+    <br><br>
+    <label for="text" id="valoracion">Valoracion:</label>
+    <input type="number" id="valoracion" required min="0" max="10" autocomplete="off"><br><br>
+    <form action="/submit-form" method="post">
+        <label for="observaciones">Observaciones:</label><br>
+        <textarea id="observaciones" name="observaciones" rows="5" cols="20"></textarea><br><br>
+        <input type="submit" value="Enviar">     <input type="reset" value="Resetear">
+
+    </form>
+    <br>
+    <a href="A6.html">
+        Volver Al indice
+    </a>
+    <div id="resultado"></div>
+</body>
+</head>
+</body>
+</html>
